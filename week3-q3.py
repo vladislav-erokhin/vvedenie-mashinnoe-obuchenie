@@ -5,7 +5,7 @@ import math
 from sklearn import metrics
 
 # читаем данные
-dl = pandas.read_csv("C:\\Users\\Vladislav\\Desktop\\Machine Learning\\week3-q3\\data-logistic.csv", header=None)
+dl = pandas.read_csv(".\\week3-q3\\data-logistic.csv", header=None)
 
 # разделяем на признаки и результат
 y = dl[0]
@@ -27,14 +27,16 @@ def grads(w1, w2, X, y, C, k):
         w2 = nw2
 
     res = [w1, w2]
-    print("Шагов: ", i)
-    print(res)
 
     #y_vals = np.sign(w1 * X[1] + w2 * X[2])
     y_scores = 1 / (1 + np.exp(-w1 * X[1] - w2 * X[2]))
     s = metrics.roc_auc_score(y, y_scores)
 
+    print("C: ", C)
+    print("Шагов: ", i)
+    print("w: ", res)
     print("Score: ", s)
+    print()
 
     return [w1, w2]
 
